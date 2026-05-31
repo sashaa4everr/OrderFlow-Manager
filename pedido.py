@@ -44,6 +44,12 @@ class PedidoApp(ctk.CTk):
         self.create_layout()
         self.loadOrders()
 
+    def validar_numero(self, valor):
+        if valor == "":
+            return True
+    
+        return valor.isdigit()
+
     def create_layout(self):
         # Sidebar
         sidebar = ctk.CTkFrame(self, fg_color=PANEL, width=220, corner_radius=18)
@@ -108,8 +114,9 @@ class PedidoApp(ctk.CTk):
         self.client_entry = ctk.CTkEntry(form)
         self.client_entry.grid(row=0, column=1, padx=10, pady=8)
 
+        vcmd = (self.register(self.validar_numero), "%P")
         ctk.CTkLabel(form, text="Cantidad:", text_color=TEXT).grid(row=1, column=0, sticky="w", padx=10, pady=8)
-        self.qty_entry = ctk.CTkEntry(form)
+        self.qty_entry = ctk.CTkEntry(form, validate="key", validatecommand=vcmd)
         self.qty_entry.grid(row=1, column=1, padx=10, pady=8)
 
         # Dropdowns
@@ -130,6 +137,10 @@ class PedidoApp(ctk.CTk):
         qty = self.qty_entry.get().strip() if hasattr(self, 'qty_entry') else ''
         if not client or not qty:
             messagebox.showwarning("Campos Incompletos", "Complete nombre y cantidad")
+            return
+        if not qty.isdigit():messagebox.showwarning("Cantidad inválida", "La cantidad debe ser numérica")
+            return
+        if int(qty) <= 0:messagebox.showwarning("Cantidad inválida","La cantidad debe ser mayor que cero")
             return
         selected = []
         for k,v in self.dropdown_vars.items():
