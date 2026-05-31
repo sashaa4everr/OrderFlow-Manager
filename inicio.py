@@ -233,6 +233,8 @@ class InterfazLogin(ctk.CTk):
         popup = ctk.CTkToplevel(self)
         popup.title("Resultado")
         popup.geometry("300x180")
+        popup.grab_set()
+        popup.focus_force()
         popup.resizable(False, False)
         popup.attributes('-topmost', True)
         
