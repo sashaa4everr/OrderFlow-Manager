@@ -16,6 +16,7 @@ class Dashboard(ctk.CTkToplevel):
         super().__init__(parent)
         self.parent = parent
         self.usuario = usuario
+        self.ventana_pedido_abierta = False
 #
         self.title("Panel de control")
         self.geometry("1100x700")
@@ -147,13 +148,33 @@ class Dashboard(ctk.CTkToplevel):
             self.detalle_label.configure(text=f"Has seleccionado: {opcion}")
 
     def abrir_pedido(self):
+        if self.ventana_pedido_abierta:
+            return
+
         try:
-            ruta_pedido = os.path.join(os.path.dirname(os.path.abspath(__file__)), "pedido.py")
-            # Abrir pedido.py en una ventana nueva
-            subprocess.Popen([sys.executable, ruta_pedido])
-            # La tabla se actualizará automáticamente cada 2 segundos
+            self.ventana_pedido_abierta = True
+    
+            ruta_pedido = os.path.join(
+                os.path.dirname(os.path.abspath(__file__)),
+                "pedido.py"
+            )
+    
+            proceso = subprocess.Popen(
+                [sys.executable, ruta_pedido]
+            )
+    
+            def esperar_cierre():
+                proceso.wait()
+                self.ventana_pedido_abierta = False
+    
+            threading.Thread(
+                target=esperar_cierre,
+                daemon=True
+            ).start()
+
         except Exception as e:
-            print("Error al abrir pedido.py:")
+            self.ventana_pedido_abierta = False
+            print("Error al abrir pedido:", e)
 
     def actualizar_tabla_pedidos(self):
         # Limpiar la tabla anterior
