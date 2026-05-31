@@ -138,9 +138,11 @@ class PedidoApp(ctk.CTk):
         if not client or not qty:
             messagebox.showwarning("Campos Incompletos", "Complete nombre y cantidad")
             return
-        if not qty.isdigit():messagebox.showwarning("Cantidad inválida", "La cantidad debe ser numérica")
+        if not qty.isdigit():
+            messagebox.showwarning("Cantidad inválida", "La cantidad debe ser numérica")
             return
-        if int(qty) <= 0:messagebox.showwarning("Cantidad inválida","La cantidad debe ser mayor que cero")
+        if int(qty) <= 0:
+            messagebox.showwarning("Cantidad inválida","La cantidad debe ser mayor que cero")
             return
         selected = []
         for k,v in self.dropdown_vars.items():
