@@ -10,9 +10,9 @@ Por favor, antes de ejecutar el programa tenga encuenta estas indicaciones:
 - Dasboard
 
 Al descargar los archivos, asegurese de haber descargado:
--inicio.py
--dasboard.py
--pedido.py
+- inicio.py
+- dashboard.py
+- pedido.py
 
 Al iniciar la ejecución, comience con el archivo "inicio.py", se le mostrara una pantalla de login,
 sientase libre de poner el usuario y contraseña que desee, de lo contrario, no tendra acceso al resto del programa.
