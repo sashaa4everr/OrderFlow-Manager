@@ -14,11 +14,13 @@ Al descargar los archivos, asegurese de haber descargado:
 - dashboard.py
 - pedido.py
 
-Al iniciar la ejecución, comience con el archivo "inicio.py", se le mostrara una pantalla de login,
+Al iniciar la ejecución, comience con el archivo *"inicio.py"*, se le mostrara una pantalla de login,
 sientase libre de poner el usuario y contraseña que desee, de lo contrario, no tendra acceso al resto del programa.
 
 Una vez dentro del sistema, vera el botón de tomar pedidos, si es oprimido se le llevara a la pestaña para tomar pedidos,
 elija el que más guste, esto creara automaticamente un archivo JSON llamado orders.json, el cual guardara todos sus pedidos.
+- De no crearse el archivo JSON al momento de guardar un pedido, descargue el que se encuentra en esta plataforma
+
 Una vez realizado varios pedidos los podra ver en la ventana principal, pero sólo los más recientes.
 
 Gracias por probar nuestro programa.
